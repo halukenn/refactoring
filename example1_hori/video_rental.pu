@@ -1,0 +1,77 @@
+@startuml
+
+title ビデオレンタル
+
+package main {
+    object main {
+    }
+}
+
+package video_rental {
+   
+    class Point {
+        default_point: int
+        get(days_rented): int
+    }
+
+    class NewReleasePoint {
+        default_point: int
+        get(days_rented): int
+    }
+
+    NewReleasePoint -up-|> Point
+
+    abstract class Price {
+        default_price: double
+        abstract get(days_rented): double
+        abstract get_point(days_rented): int
+    }
+
+    Price o-right- Point 
+
+    class ChildrenPrice {
+        get(days_rented): double
+        get_point(days_rented): int
+    }
+
+    class RegularPrice {
+        get(days_rented): double
+        get_point(days_rented): int
+    }
+
+    class NewReleasePrice {
+        get(days_rented): double
+        get_point(days_rented): int
+    }
+
+    ChildrenPrice -up-|> Price
+    RegularPrice -up-|> Price
+    NewReleasePrice -up-|> Price
+
+    class Movie {
+        title: str
+        price(days_rented): double
+        point(days_rented): int
+    }
+
+    Movie o-right- Price
+
+    class Rental {
+        days_rented: int
+        price(): double
+        point(): int
+    }
+
+    class Customer {
+        name: str
+        add_rental(movie, days_rented): str
+        statement(): str
+    }
+}
+
+main -->Customer
+Customer "1" o--right--> "*" Rental
+Rental "*" o--right--> "1" Movie
+
+
+@enduml
