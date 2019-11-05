@@ -1,0 +1,52 @@
+@startuml
+
+title 図形
+
+package main {
+    object main {
+    }
+}
+
+package shape {
+   
+    enum ShapeType {
+        LINE: str
+        RECTANGLE: str
+        OVAL: str
+    }
+
+    abstract class Shape {
+        abstract name(): str
+        abstract draw(): str
+    }
+
+    class Line {
+        name(): str
+        draw(): str
+    }
+
+    class Rectangle {
+        name(): str
+        draw(): str
+    }
+
+    class Oval {
+        name(): str
+        draw(): str
+    }
+
+    class ShapeFactory {
+        {static} create(shapeType): Shape
+    }
+
+    Line -up-|> Shape
+    Rectangle -up-|> Shape
+    Oval -up-|> Shape
+    ShapeFactory -right-> Shape
+    ShapeFactory -left-> ShapeType
+}
+
+main --> ShapeFactory
+
+
+@enduml
