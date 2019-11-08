@@ -29,8 +29,8 @@ class Shape:
 
 class Line(Shape):
 
-    def __init__(self, startx, starty, endx, endy):
-        super().__init__(startx, starty, endx, endy)
+    # def __init__(self, startx, starty, endx, endy):
+    #     super().__init__(startx, starty, endx, endy)
 
     def name(self):
         return 'LINE'
@@ -41,8 +41,8 @@ class Line(Shape):
 
 class Rectangle(Shape):
 
-    def __init__(self, startx, starty, endx, endy):
-        super().__init__(startx, starty, endx, endy)
+    # def __init__(self, startx, starty, endx, endy):
+        # super().__init__(startx, starty, endx, endy)
 
     def name(self):
         return 'RECTANGLE'
@@ -53,8 +53,8 @@ class Rectangle(Shape):
 
 class Oval(Shape):
 
-    def __init__(self, startx, starty, endx, endy):
-        super().__init__(startx, starty, endx, endy)
+    # def __init__(self, startx, starty, endx, endy):
+    #     super().__init__(startx, starty, endx, endy)
 
     def name(self):
         return 'OVAL'

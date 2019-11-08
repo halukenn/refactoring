@@ -28,8 +28,8 @@ class Logger:
 
     def log(self, info):
         if self.STATE_STOPPED == self._state:
-            print('** Ignoring:{} **'.format(info))
+            print('Ignoring:{}'.format(info))
         elif self.STATE_LOGGING == self._state:
-            print('** Logging:{} **'.format(info))
+            print('Logging:{}'.format(info))
         else:
             print('Invalid state:{}'.format(self._state))
