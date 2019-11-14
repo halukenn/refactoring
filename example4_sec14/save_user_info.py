@@ -15,7 +15,7 @@ class Database:
         self._properties.set('SECTION', key, value)
 
     def get(self, key):
-        self._properties.get('SECTION', key)
+        return self._properties.get('SECTION', key)
 
     def update(self):
         with open(self._filename, 'w') as file:
@@ -36,4 +36,4 @@ class AddressFile:
         return self._database
 
     def names(self):
-        return self._database.properties.items('SECTION')
+        return self._database.properties.options('SECTION')

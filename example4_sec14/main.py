@@ -9,7 +9,8 @@ def execute():
     file.database.set('Hanako', 'hanako@example.com')
     file.database.update()
 
-    for name, email in file.names():
+    for name in file.names():
+        email = file.database.get(name)
         print('name={}, email={}'.format(name, email))
 
 
