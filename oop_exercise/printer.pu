@@ -1,0 +1,102 @@
+@startuml
+
+title VendingMachine
+
+package main {
+    object main {
+    }
+}
+
+package drink {
+
+    enum DrinkEnum {
+        COKE = 0
+        DIET_COKE = 1
+        TEA = 2
+    }
+
+    abstract class Drink {
+    }
+
+    class Coke {
+    }
+
+    class DietCoke {
+    }
+
+    class Tea {
+    }
+
+    Coke -up-|> Drink
+    DietCoke -up-|> Drink
+    Tea -up-|> Drink
+}
+
+package coin {
+
+    enum CoinEnum {
+        Y100 = 0
+        Y500 = 1
+    }
+
+    abstract class Coin {
+        abstract no(): CoinEnum
+    }
+
+    Coin -left-> CoinEnum
+
+    class Y100 {
+        no(): CoinEnum
+    }
+
+    class Y500 {
+        no(): CoinEnum
+    }
+
+    Y100 -up-|> Coin
+    Y500 -up-|> Coin
+}
+
+package vending {
+
+    class VendingMachine {
+        buy(drink: DrinkEnum, coin: Coin): Drink
+        refund(): list
+    }
+
+    class DrinkStock {
+        quantity: dict
+        has_stock(drinkEnum: DrinkEnum): bool
+        get(drinkEnum: DrinkEnum): Drink
+    }
+
+    VendingMachine o-right-> DrinkStock
+    DrinkStock -right-> DrinkEnum
+    DrinkStock o-right-> Drink
+
+    class Payment {
+        coin: Coin
+        changes: list
+        put(coin: Coin): void
+        transaction(): void
+        available(): bool
+        refund(): list
+    }
+
+    VendingMachine o-left-> Payment
+
+    class CoinRepository {
+        coins: dict
+        add(coin: Coin): void
+        num(coinEnum: CoinEnum): int
+        get(coinEnum: CoinEnum, num: int): list
+    }
+
+    Payment o-left-> CoinRepository
+}
+
+main --> VendingMachine
+CoinRepository o-left-> Coin
+
+
+@enduml
