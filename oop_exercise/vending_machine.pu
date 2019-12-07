@@ -64,26 +64,33 @@ package vending {
         refund(): list
     }
 
-    class DrinkStock {
+    class DrinkRepository {
         quantity: dict
         has_stock(drinkEnum: DrinkEnum): bool
         get(drinkEnum: DrinkEnum): Drink
     }
 
-    VendingMachine o-right-> DrinkStock
-    DrinkStock -right-> DrinkEnum
-    DrinkStock o-right-> Drink
+    VendingMachine o-right-> DrinkRepository
+    DrinkRepository -right-> DrinkEnum
+    DrinkRepository o-right-> Drink
 
     class Payment {
-        coin: Coin
-        changes: list
-        put(coin: Coin): void
+        put(inserted_coin: Coin, has_stock: bool): void
         transaction(): void
-        available(): bool
         refund(): list
     }
 
     VendingMachine o-left-> Payment
+    Payment o-down-> UserCoin
+
+    class UserCoin {
+        inserted_coin: list
+        changes: list
+        put(inserted_coin: Coin): void
+        add_change(coins: list)
+        accept(): Coin
+        refund(): list
+    }
 
     class CoinRepository {
         coins: dict
