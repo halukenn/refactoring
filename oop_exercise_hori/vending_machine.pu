@@ -16,15 +16,19 @@ package drink {
     }
 
     abstract class Drink {
+        {abstract} name(): str
     }
 
     class Coke {
+        name(): str
     }
 
     class DietCoke {
+        name(): str
     }
 
     class Tea {
+        name(): str
     }
 
     Coke -up-|> Drink
