@@ -53,7 +53,10 @@ class CoinRepository:
 
     def get(self, coin_enum, num):
         coins = self.coin_dic.get(coin_enum)
-        return coins[:num]
+        result = []
+        for _ in range(num):
+            result.append(coins.pop(0))
+        return result
 
 
 class UserCoin:

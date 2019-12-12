@@ -45,16 +45,19 @@ package coin {
 
     abstract class Coin {
         abstract no(): CoinEnum
+        abstract value(): int
     }
 
     Coin -left-> CoinEnum
 
     class Y100 {
         no(): CoinEnum
+        value(): int
     }
 
     class Y500 {
         no(): CoinEnum
+        value(): int
     }
 
     Y100 -up-|> Coin
